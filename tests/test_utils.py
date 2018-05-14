@@ -1,6 +1,6 @@
 import unittest
 
-from python_utils import tuple_to_index, index_to_tuple, divide_sequence_into_chunks, divide_sequence_by_n
+from utils import tuple_to_index, index_to_tuple, divide_sequence_into_chunks, divide_sequence_by_n
 
 
 class TestUtils(unittest.TestCase):
