@@ -20,8 +20,7 @@ setup(
     author_email='mandai.yusaku@gmail.com',
     url='https://github.com/mandaiy/python-miscs',
     license='Apache 2.0',
-    packages=find_packages(exclude=('tests')),
-    install_requires=_read_requirements('requirements.txt'),
-    test_suite='tests'
+    packages=find_packages(exclude=('tests', 'docs')),
+    install_requires=_read_requirements('requirements.txt')
 )
 
