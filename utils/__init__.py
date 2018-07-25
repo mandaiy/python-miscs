@@ -1,4 +1,5 @@
 import os
+import time
 
 from typing import Callable, Generator, Tuple, Sequence, Union, Iterable
 
@@ -157,3 +158,33 @@ def ordinal_number(n: int):
     """
     # from https://codegolf.stackexchange.com/questions/4707/outputting-ordinal-numbers-1st-2nd-3rd#answer-4712
     return'%d%s' % (n, 'tsnrhtdd'[(n // 10 % 10 != 1) * (n % 10 < 4) * (n % 10)::4])
+
+
+class Timer:
+
+    def __init__(self, backend_clock=time.process_time):
+        self.backend_clock = backend_clock
+        self.cumulative_time = 0
+
+    def reset(self):
+        self.cumulative_time = 0
+
+    def _start(self):
+        self.start_time = self.now()
+
+    def _stop(self):
+        self.cumulative_time += self.now() - self.start_time
+
+    def __enter__(self):
+        self._start()
+
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self._stop()
+
+    def __str__(self):
+        return "{}".format(self.cumulative_time)
+
+    def now(self):
+        return self.backend_clock()
