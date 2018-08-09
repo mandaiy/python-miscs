@@ -1,3 +1,5 @@
+import argparse
+import json
 import os
 import time
 
@@ -158,6 +160,17 @@ def ordinal_number(n: int):
     """
     # from https://codegolf.stackexchange.com/questions/4707/outputting-ordinal-numbers-1st-2nd-3rd#answer-4712
     return'%d%s' % (n, 'tsnrhtdd'[(n // 10 % 10 != 1) * (n % 10 < 4) * (n % 10)::4])
+
+
+def save_args(conditions, out_path):
+    if isinstance(conditions, argparse.Namespace):
+        args = vars(conditions)
+    else:
+        args = conditions
+    args_dict = {k: str(v) for k, v in args.items()}
+
+    with open(os.path.join(out_path, 'args'), 'w') as f:
+        json.dump(args_dict, f, indent=4)
 
 
 class Timer:
