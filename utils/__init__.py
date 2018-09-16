@@ -162,14 +162,14 @@ def ordinal_number(n: int):
     return'%d%s' % (n, 'tsnrhtdd'[(n // 10 % 10 != 1) * (n % 10 < 4) * (n % 10)::4])
 
 
-def save_args(conditions, out_path):
+def save_args(conditions, out_path, name='args'):
     if isinstance(conditions, argparse.Namespace):
         args = vars(conditions)
     else:
         args = conditions
     args_dict = {k: str(v) for k, v in args.items()}
 
-    with open(os.path.join(out_path, 'args'), 'w') as f:
+    with open(os.path.join(out_path, name), 'w') as f:
         json.dump(args_dict, f, indent=4)
 
 
