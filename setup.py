@@ -13,7 +13,7 @@ def _read_requirements(filename):
 
 setup(
     name='python-miscs',
-    version='0.3.0',
+    version='0.3.1',
     description='Misc utilities of python',
     long_description=readme,
     author='Yusaku Mandai',
